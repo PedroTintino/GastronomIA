@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./prisma/client"
 }
 
 datasource db {
@@ -16,6 +17,8 @@ model User{
   name String
   password String
   recipes Recipe[]
+
+  @@map("users")
 }
 
 model Recipe{
@@ -25,4 +28,6 @@ model Recipe{
   time String
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String @db.ObjectId
+
+  @@map("recipes")
 }
