@@ -33,9 +33,9 @@ function Auth(){
       <h2 className='text-3xl mb-4'>Autenticação</h2>
       <form className='flex flex-col gap-4 border p-5 rounded'>
         <label>Email: </label>
-        <input type="text" className='border border-black rounded p-1'/>
+        <input type="text" required className='border border-black rounded p-1'/>
         <label>Senha: </label>
-        <input type="password" className='border border-black rounded p-1'/>
+        <input type="password" required className='border border-black rounded p-1'/>
         <button className='bg-medianPink rounded p-2 text-white font-semibold'>Entrar</button>
       </form>
       <br />

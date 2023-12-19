@@ -3,13 +3,17 @@ import { CreateUserService } from "../services/CreateUserService";
 
 class CreateUserCrontoller{
     async handle(req: Request, res: Response){
-        const { name, email, password } = req.body;
+        try{    
+            const { name, email, password } = req.body;
 
-        const userService = new CreateUserService()
+            const userService = new CreateUserService()
 
-        const user = await userService.execute({ name, email, password });
+            const user = await userService.execute({ name, email, password });
 
-        res.send(user)
+            res.send(user)
+        } catch(error){
+                return res.json({ message: 'Email already in use!' })
+        }
     }
 }
 
