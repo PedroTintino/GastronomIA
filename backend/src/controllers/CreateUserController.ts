@@ -12,7 +12,11 @@ class CreateUserCrontoller{
 
             res.send(user)
         } catch(error){
-                return res.json({ message: 'Email already in use!' })
+                if(error instanceof Error){
+                    if(error.message === "Email already exists!"){
+                        res.status(400).json({ error: "Email already in use"})
+                    }
+                }
         }
     }
 }

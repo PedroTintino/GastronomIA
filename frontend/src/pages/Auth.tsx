@@ -16,7 +16,7 @@ function Auth(){
     <div className='min-h-screen min-w-full flex justify-around align-middle'>
     <MinWidthWrapper>
     <div className="bg-strongPink w-[100%] h-screen flex justify-center items-center invisible;">
-      <div className='introText flex font-medium text-3xl text-white p-4'>
+      <div className='introText flex font-medium text-3xl text-white p-20'>
         <span>Conheça <span className='text-4xl font-bold'>GastronomIA</span> seu
         <Typical
           className='text-4xl font-bold'
