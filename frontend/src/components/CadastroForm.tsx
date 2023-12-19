@@ -1,28 +1,43 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const CadastroForm = () => {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
-      nome: '',
+      name: '',
       email: '',
-      senha: '',
-      repetirSenha: '',
+      password: '',
+      repeatPassword: '',
     },
     validationSchema: yup.object({
-      nome: yup.string().required('Campo obrigatório'),
+      name: yup.string().required('Campo obrigatório'),
       email: yup.string().email('Formato de email inválido').required('Campo obrigatório'),
-      senha: yup.string().required('Campo obrigatório'),
-      repetirSenha: yup
+      password: yup.string().required('Campo obrigatório'),
+      repeatPassword: yup
         .string()
         // @ts-ignore
-        .oneOf([yup.ref('senha'), null], 'Senhas não coincidem')
+        .oneOf([yup.ref('password'), null], 'Senhas não coincidem')
         .required('Campo obrigatório'),
     }),
-    onSubmit: (values) => {
-      // VOU ENVIAR OS DADOS DAQUI
-      alert(`Dados enviados com sucesso!`)
-      console.log(values);
+    onSubmit: async (values) => {
+      try{
+        const response = await axios.post('http://localhost:3336/create', values);
+
+        if(response.status === 200){
+          alert('Credencial gerada! Clique em OK para ser redirecionado à sessão de login de login.')
+          navigate('/')
+        } else{
+          alert('Erro ao enviar dados ao servidor!')
+        }
+      }catch(error){
+        console.log('Erro na solicitação para o servidor', error)
+      } finally{
+        
+      }
     },
   });
 
@@ -31,9 +46,9 @@ const CadastroForm = () => {
       <label>
         Nome:
         <br />
-        <input type="text" name="nome" value={formik.values.nome} onChange={formik.handleChange} className='border border-black rounded p-1'/>
-        {formik.touched.nome && formik.errors.nome ? (
-          <div style={{ color: 'red' }}>{formik.errors.nome}</div>
+        <input type="text" name="name" value={formik.values.name} onChange={formik.handleChange} className='border border-black rounded p-1'/>
+        {formik.touched.name && formik.errors.name ? (
+          <div style={{ color: 'red' }}>{formik.errors.name}</div>
         ) : null}
       </label>
       <label>
@@ -55,13 +70,13 @@ const CadastroForm = () => {
         <br />
         <input
           type="password"
-          name="senha"
-          value={formik.values.senha}
+          name="password"
+          value={formik.values.password}
           onChange={formik.handleChange}
           className='border border-black rounded '
         />
-        {formik.touched.senha && formik.errors.senha ? (
-          <div style={{ color: 'red' }}>{formik.errors.senha}</div>
+        {formik.touched.password && formik.errors.password ? (
+          <div style={{ color: 'red' }}>{formik.errors.password}</div>
         ) : null}
       </label>
       <label>
@@ -69,13 +84,13 @@ const CadastroForm = () => {
         <br />
         <input
           type="password"
-          name="repetirSenha"
-          value={formik.values.repetirSenha}
+          name="repeatPassword"
+          value={formik.values.repeatPassword}
           onChange={formik.handleChange}
           className='border border-black rounded'
         />
-        {formik.touched.repetirSenha && formik.errors.repetirSenha ? (
-          <div style={{ color: 'red' }}>{formik.errors.repetirSenha}</div>
+        {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
+          <div style={{ color: 'red' }}>{formik.errors.repeatPassword}</div>
         ) : null}
       </label>
       <button type="submit" className='bg-medianPink rounded p-2 text-white font-semibold'>Cadastrar</button>
