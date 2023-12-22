@@ -2,7 +2,7 @@ import prismaClient from "../prisma";
 
 interface AuthUserProps{
     email: string,
-    password: string
+    password: string,
 }
 
 class AuthUserService{
@@ -20,7 +20,7 @@ class AuthUserService{
         if(!user || user.password !== password){
             throw new Error('Invalid email or password!')
         }
-
+    
     }
 }
 export { AuthUserService }
