@@ -1,8 +1,10 @@
 import express, { Request, Response } from "express";
+import prismaClient from "./prisma";
 import { CreateUserCrontoller } from "./controllers/CreateUserController";
 import { ListUsersController } from "./controllers/ListUsersCcontroller";
 import { DeleteUserController } from "./controllers/DeleteUserController";
 import { AuthUserController } from "./controllers/AuthController";
+import { SaveRecipeController } from "./controllers/SaveRecipeController";
 
 const generateResponse = require("./api/openai.js")
 
@@ -27,22 +29,26 @@ routes.delete('/user', async (req: Request, res: Response) => {
 })
 
 // Login Route
-routes.post('/login', async (req, res) => {
+routes.post('/login', async (req: Request, res: Response) => {
     return new AuthUserController().handle(req, res)
 })
 
 // Rota da API Externa
 routes.post('/apiResponse', async(req, res) => {
     const userMessage = req.body.message;
-
-    try{
-        const aiResponse = await generateResponse(userMessage);
-        res.json({ aiResponse });
-
+      try{
+        const apiResponse = await generateResponse(userMessage);
+        res.json(apiResponse);
+  
     } catch(error){
         console.error('Erro ao gerar uma resposta:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+})
+
+// Rota de Saving
+routes.post('/saveRecipe', async(req: Request, res: Response) => {
+    return new SaveRecipeController().handle(req, res)
 })
 
 export default routes;

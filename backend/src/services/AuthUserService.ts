@@ -20,6 +20,8 @@ class AuthUserService{
         if(!user || user.password !== password){
             throw new Error('Invalid email or password!')
         }
+
+    return user;
     
     }
 }

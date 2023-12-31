@@ -23,8 +23,8 @@ model User{
 
 model Recipe{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  nome String
-  descricao String
+  name String
+  description String
   time String
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String @db.ObjectId

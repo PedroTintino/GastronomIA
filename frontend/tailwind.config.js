@@ -10,7 +10,8 @@ export default {
       softPink: '#ffd0e1',
       verySoftPink: '#ffd0e1',
       medianPink: '#ffb8d2',
-      strongPink: '#ffa0c4'
+      strongPink: '#ffa0c4',
+      lightGray: '#ededed'
     },
     extend: {},
   },

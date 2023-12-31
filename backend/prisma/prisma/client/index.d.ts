@@ -190,8 +190,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.7.0
-   * Query Engine version: 79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
+   * Prisma Client JS version: 5.7.1
+   * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
    */
   export type PrismaVersion = {
     client: string
@@ -1941,24 +1941,24 @@ export namespace Prisma {
 
   export type RecipeMinAggregateOutputType = {
     id: string | null
-    nome: string | null
-    descricao: string | null
+    name: string | null
+    description: string | null
     time: string | null
     ownerId: string | null
   }
 
   export type RecipeMaxAggregateOutputType = {
     id: string | null
-    nome: string | null
-    descricao: string | null
+    name: string | null
+    description: string | null
     time: string | null
     ownerId: string | null
   }
 
   export type RecipeCountAggregateOutputType = {
     id: number
-    nome: number
-    descricao: number
+    name: number
+    description: number
     time: number
     ownerId: number
     _all: number
@@ -1967,24 +1967,24 @@ export namespace Prisma {
 
   export type RecipeMinAggregateInputType = {
     id?: true
-    nome?: true
-    descricao?: true
+    name?: true
+    description?: true
     time?: true
     ownerId?: true
   }
 
   export type RecipeMaxAggregateInputType = {
     id?: true
-    nome?: true
-    descricao?: true
+    name?: true
+    description?: true
     time?: true
     ownerId?: true
   }
 
   export type RecipeCountAggregateInputType = {
     id?: true
-    nome?: true
-    descricao?: true
+    name?: true
+    description?: true
     time?: true
     ownerId?: true
     _all?: true
@@ -2064,8 +2064,8 @@ export namespace Prisma {
 
   export type RecipeGroupByOutputType = {
     id: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
     ownerId: string
     _count: RecipeCountAggregateOutputType | null
@@ -2089,8 +2089,8 @@ export namespace Prisma {
 
   export type RecipeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    nome?: boolean
-    descricao?: boolean
+    name?: boolean
+    description?: boolean
     time?: boolean
     ownerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
@@ -2098,8 +2098,8 @@ export namespace Prisma {
 
   export type RecipeSelectScalar = {
     id?: boolean
-    nome?: boolean
-    descricao?: boolean
+    name?: boolean
+    description?: boolean
     time?: boolean
     ownerId?: boolean
   }
@@ -2116,8 +2116,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      nome: string
-      descricao: string
+      name: string
+      description: string
       time: string
       ownerId: string
     }, ExtArgs["result"]["recipe"]>
@@ -2543,8 +2543,8 @@ export namespace Prisma {
    */ 
   interface RecipeFieldRefs {
     readonly id: FieldRef<"Recipe", 'String'>
-    readonly nome: FieldRef<"Recipe", 'String'>
-    readonly descricao: FieldRef<"Recipe", 'String'>
+    readonly name: FieldRef<"Recipe", 'String'>
+    readonly description: FieldRef<"Recipe", 'String'>
     readonly time: FieldRef<"Recipe", 'String'>
     readonly ownerId: FieldRef<"Recipe", 'String'>
   }
@@ -2919,8 +2919,8 @@ export namespace Prisma {
 
   export const RecipeScalarFieldEnum: {
     id: 'id',
-    nome: 'nome',
-    descricao: 'descricao',
+    name: 'name',
+    description: 'description',
     time: 'time',
     ownerId: 'ownerId'
   };
@@ -3035,8 +3035,8 @@ export namespace Prisma {
     OR?: RecipeWhereInput[]
     NOT?: RecipeWhereInput | RecipeWhereInput[]
     id?: StringFilter<"Recipe"> | string
-    nome?: StringFilter<"Recipe"> | string
-    descricao?: StringFilter<"Recipe"> | string
+    name?: StringFilter<"Recipe"> | string
+    description?: StringFilter<"Recipe"> | string
     time?: StringFilter<"Recipe"> | string
     ownerId?: StringFilter<"Recipe"> | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -3044,8 +3044,8 @@ export namespace Prisma {
 
   export type RecipeOrderByWithRelationInput = {
     id?: SortOrder
-    nome?: SortOrder
-    descricao?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
     time?: SortOrder
     ownerId?: SortOrder
     owner?: UserOrderByWithRelationInput
@@ -3056,8 +3056,8 @@ export namespace Prisma {
     AND?: RecipeWhereInput | RecipeWhereInput[]
     OR?: RecipeWhereInput[]
     NOT?: RecipeWhereInput | RecipeWhereInput[]
-    nome?: StringFilter<"Recipe"> | string
-    descricao?: StringFilter<"Recipe"> | string
+    name?: StringFilter<"Recipe"> | string
+    description?: StringFilter<"Recipe"> | string
     time?: StringFilter<"Recipe"> | string
     ownerId?: StringFilter<"Recipe"> | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -3065,8 +3065,8 @@ export namespace Prisma {
 
   export type RecipeOrderByWithAggregationInput = {
     id?: SortOrder
-    nome?: SortOrder
-    descricao?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
     time?: SortOrder
     ownerId?: SortOrder
     _count?: RecipeCountOrderByAggregateInput
@@ -3079,8 +3079,8 @@ export namespace Prisma {
     OR?: RecipeScalarWhereWithAggregatesInput[]
     NOT?: RecipeScalarWhereWithAggregatesInput | RecipeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Recipe"> | string
-    nome?: StringWithAggregatesFilter<"Recipe"> | string
-    descricao?: StringWithAggregatesFilter<"Recipe"> | string
+    name?: StringWithAggregatesFilter<"Recipe"> | string
+    description?: StringWithAggregatesFilter<"Recipe"> | string
     time?: StringWithAggregatesFilter<"Recipe"> | string
     ownerId?: StringWithAggregatesFilter<"Recipe"> | string
   }
@@ -3136,51 +3136,51 @@ export namespace Prisma {
 
   export type RecipeCreateInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
     owner: UserCreateNestedOneWithoutRecipesInput
   }
 
   export type RecipeUncheckedCreateInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
     ownerId: string
   }
 
   export type RecipeUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
     owner?: UserUpdateOneRequiredWithoutRecipesNestedInput
   }
 
   export type RecipeUncheckedUpdateInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type RecipeCreateManyInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
     ownerId: string
   }
 
   export type RecipeUpdateManyMutationInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
   }
 
   export type RecipeUncheckedUpdateManyInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
   }
@@ -3256,24 +3256,24 @@ export namespace Prisma {
 
   export type RecipeCountOrderByAggregateInput = {
     id?: SortOrder
-    nome?: SortOrder
-    descricao?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
     time?: SortOrder
     ownerId?: SortOrder
   }
 
   export type RecipeMaxOrderByAggregateInput = {
     id?: SortOrder
-    nome?: SortOrder
-    descricao?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
     time?: SortOrder
     ownerId?: SortOrder
   }
 
   export type RecipeMinOrderByAggregateInput = {
     id?: SortOrder
-    nome?: SortOrder
-    descricao?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
     time?: SortOrder
     ownerId?: SortOrder
   }
@@ -3382,15 +3382,15 @@ export namespace Prisma {
 
   export type RecipeCreateWithoutOwnerInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
   }
 
   export type RecipeUncheckedCreateWithoutOwnerInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
   }
 
@@ -3424,8 +3424,8 @@ export namespace Prisma {
     OR?: RecipeScalarWhereInput[]
     NOT?: RecipeScalarWhereInput | RecipeScalarWhereInput[]
     id?: StringFilter<"Recipe"> | string
-    nome?: StringFilter<"Recipe"> | string
-    descricao?: StringFilter<"Recipe"> | string
+    name?: StringFilter<"Recipe"> | string
+    description?: StringFilter<"Recipe"> | string
     time?: StringFilter<"Recipe"> | string
     ownerId?: StringFilter<"Recipe"> | string
   }
@@ -3474,26 +3474,26 @@ export namespace Prisma {
 
   export type RecipeCreateManyOwnerInput = {
     id?: string
-    nome: string
-    descricao: string
+    name: string
+    description: string
     time: string
   }
 
   export type RecipeUpdateWithoutOwnerInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
   }
 
   export type RecipeUncheckedUpdateWithoutOwnerInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
   }
 
   export type RecipeUncheckedUpdateManyWithoutOwnerInput = {
-    nome?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
   }
 

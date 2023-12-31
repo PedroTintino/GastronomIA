@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 class AuthUserController{
     async handle(req: Request, res: Response){
         try{
-            const { email , password, id } = req.body;
+            const { email , password } = req.body;
 
             const authService = new AuthUserService();
 
@@ -17,7 +17,7 @@ class AuthUserController{
 
             const token = jwt.sign({
                 //@ts-ignore
-                id: user
+                id: user,
                 // TIve que acessar diretamente por ser o prisma quem gera
             },
             secret
