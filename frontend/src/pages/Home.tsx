@@ -55,7 +55,7 @@ function Home(){
             const response = await axios.post('http://localhost:3336/recipe/save', {
                 data: apiResponse
             })
-
+            handleCloseModal();
             console.log("API response saved", response)
         }
     } catch(error){
