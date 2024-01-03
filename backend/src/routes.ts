@@ -36,6 +36,7 @@ routes.post('/login', async (req: Request, res: Response) => {
 routes.post('/apiResponse', async(req, res) => {
     const userMessage = req.body.message;
       try{
+        console.log(userMessage);
         const apiResponse = await generateResponse(userMessage);
         res.json(apiResponse);
   

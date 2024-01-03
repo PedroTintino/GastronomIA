@@ -1,108 +1,138 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import ActionCard from "../components/Card";
-import RecipeModal from '../components/RecipeModal'
+import RecipeModal from "../components/RecipeModal";
 import Recipe from "../assets/types/recipeTypes";
+import Loader from "../components/Loader";
 
-
-function Home(){
-    const [userName, setUserName] = useState('');
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [apiResponse, setApiResponse] = useState<Recipe>({name: '', description: '', time: '', id: '', userId:''});
-    
-    useEffect(() => {
-        const fetchUserName = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const decodedToken = parseJwt(token);
-                const userName = decodedToken.id.name;
-                setUserName(userName);
-                
-            } catch (error) {
-                console.log('Erro ao encontrar o nome!', error);
-            }
-        };
-
-        fetchUserName();
-    }, []);
-
-    const parseJwt = (token: any) => {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(atob(base64));
+function Home() {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [apiResponse, setApiResponse] = useState<Recipe>({
+    name: "",
+    description: "",
+    time: "",
+    id: "",
+    userId: "",
+  });
+  const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
+// Minhas funções a serem carregas sempre
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const decodedToken = parseJwt(token);
+        const userName = decodedToken.id.name;
+        setUserName(userName);
+      } catch (error) {
+        console.log("Erro ao encontrar o nome!", error);
+      }
     };
+    fetchUserName();
+  }, []);
 
-   
-    const handleActionClick = () => {
-        setModalOpen(true);
-    };
+  const parseJwt = (token: any) => {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace("-", "+").replace("_", "/");
+    return JSON.parse(atob(base64));
+  };
 
-    const handleCloseModal = () => {
-        setModalOpen(false);
-    };
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
 
-    const handleSave = async () => {
-        try {
-        const beSaved = true;
-        if(beSaved){
-            const token = localStorage.getItem('token');
-            const decodedToken = parseJwt(token);
-            const userId = decodedToken.id.id;
-            apiResponse.userId = userId;
-            console.log(apiResponse);
-            const response = await axios.post('http://localhost:3336/recipe/save', {
-                data: apiResponse
-            })
-            handleCloseModal();
-            console.log("API response saved", response)
-        }
-    } catch(error){
-        console.error('Erro ao salvar: ',error)
+    navigate('/');
+  }
+
+  const handleActionClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleSave = async () => {
+    try {
+      const beSaved = true;
+      if (beSaved) {
+        const token = localStorage.getItem("token");
+        const decodedToken = parseJwt(token);
+        const userId = decodedToken.id.id;
+        apiResponse.userId = userId;
+        console.log(apiResponse);
+        const updatedApiResponse = { ...apiResponse, userId };
+        console.log(updatedApiResponse);
+        const response = await axios.post(
+          "http://localhost:3336/recipe/save",
+          {
+            data: updatedApiResponse,
+          }
+        );
+        setSavedRecipes((prevRecipes) => [...prevRecipes, updatedApiResponse]);
+        handleCloseModal();
+      }
+    } catch (error) {
+      console.error("Erro ao salvar: ", error);
     }
+  };
 
-    };
+  const handleInputSubmit = async (inputValue: String) => {
+    try {
+      setLoading(true);
+      const response = await axios.post("http://localhost:3336/apiResponse", {
+        data: inputValue,
+      });
+      const responseData = JSON.parse(response.data);
+      setApiResponse(responseData);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Erro ao chamar a API:", error);
+    }
+    finally{
+      setLoading(false);
+    }
+  };
 
-    const handleInputSubmit = async (inputValue: String) => {
-        try {
-          const response = await axios.post('http://localhost:3336/apiResponse', { data: inputValue });
-          const responseData = JSON.parse(response.data);
-          setApiResponse(responseData);
-          setModalOpen(true)
-        } catch (error) {
-          console.error('Erro ao chamar a API:', error);
-        }  
-      };
-
-    return(
-        <div className="mainContainer min-h-screen bg-white">
-            <Navbar userName={userName}/>
-            <div className="flex flex-col p-2 text-center justify-center">
-            <div className="instructionSection p-2">
-                <form>
-                    <Input onInputSubmit={handleInputSubmit}/>
-                </form>
-            </div>
-            <div className="newRecipeSection text-xl">
-                <h2>Minhas receitas</h2>
-                {
-                    <ActionCard 
-                        title="Ação Importante"
-                        description="Clique no botão para executar uma ação importante."
-                        recipe={apiResponse}
-                        onClick={handleActionClick}
-                    />
-                }
-            <RecipeModal 
-                open={isModalOpen} 
-                onClose={handleCloseModal} 
-                recipe={apiResponse}
-                onSave={handleSave}/>
-            </div>
-            </div>
+  return (
+    <div className="mainContainer min-h-screen bg-white">
+      <Navbar userName={userName} onLogout={handleLogOut} />
+      <div className="flex flex-col p-2 text-center justify-center">
+        <div className="instructionSection p-2">
+          <form>
+            <Input onInputSubmit={handleInputSubmit} />
+          </form>
+          {loading && <Loader />}
         </div>
-    )
+        <div className="newRecipeSection text-xl">
+          <h2>Minhas receitas</h2>
+          <div className="mainContainer flex align-middle justify-center max-h-screen">
+            <div className="gridContainer p-2 grid md:grid-cols-4 gap-3 sm:grid-cols-3">
+            {savedRecipes.map((savedRecipe) => (
+              <ActionCard
+                  key={savedRecipe.id}
+                  title="Ação Importante"
+                  description="Clique no botão para executar uma ação importante."
+                  recipe={savedRecipe}
+                  onClick={handleActionClick}
+              />
+              ))}
+              </div>
+            </div>
+          <RecipeModal
+            open={isModalOpen}
+            onClose={handleCloseModal}
+            recipe={apiResponse}
+            onSave={handleSave}
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Home;
