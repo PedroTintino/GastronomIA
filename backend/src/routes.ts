@@ -4,6 +4,7 @@ import { ListUsersController } from "./controllers/ListUsersCcontroller";
 import { DeleteUserController } from "./controllers/DeleteUserController";
 import { AuthUserController } from "./controllers/AuthController";
 import { SaveRecipeController } from "./controllers/SaveRecipeController";
+import { ListRecipesController } from "./controllers/ListRecipesController";
 
 const generateResponse = require("./api/openai.js")
 
@@ -32,9 +33,14 @@ routes.post('/login', async (req: Request, res: Response) => {
     return new AuthUserController().handle(req, res)
 })
 
+// Get Recipes Route
+routes.get('/recipe/:userId', async (req: Request, res: Response) => {
+    return new ListRecipesController().handle(req, res);
+});
+
 // Rota da API Externa
 routes.post('/apiResponse', async(req, res) => {
-    const userMessage = req.body.message;
+    const userMessage = req.body.data;
       try{
         console.log(userMessage);
         const apiResponse = await generateResponse(userMessage);

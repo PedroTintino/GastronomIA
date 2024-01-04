@@ -21,6 +21,7 @@ function Home() {
     userId: "",
   });
   const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
+  const [listRecipes, setListRecipes] = useState<Recipe[]>([]);
 // Minhas funções a serem carregas sempre
   useEffect(() => {
     const fetchUserName = async () => {
@@ -35,6 +36,25 @@ function Home() {
     };
     fetchUserName();
   }, []);
+
+  const handleRecipes = async () => {
+    try{
+      const token = localStorage.getItem("token");
+      const decodedToken = parseJwt(token).id;
+      const userId = decodedToken.id;
+      const response = await axios.get(`http://localhost:3336/recipe/${userId}`)
+      console.log(response);
+      setListRecipes(response.data);
+
+    } catch(error){
+      console.error(`Erro ao carregar as receitas`, error)
+    }
+  }
+  
+// Get all recipes useEffect
+  useEffect(() => {
+     handleRecipes();
+  }, [savedRecipes]);
 
   const parseJwt = (token: any) => {
     const base64Url = token.split(".")[1];
@@ -112,12 +132,12 @@ function Home() {
           <h2>Minhas receitas</h2>
           <div className="mainContainer flex align-middle justify-center max-h-screen">
             <div className="gridContainer p-2 grid md:grid-cols-4 gap-3 sm:grid-cols-3">
-            {savedRecipes.map((savedRecipe) => (
+            {listRecipes.map((recipe) => (
               <ActionCard
-                  key={savedRecipe.id}
+                  key={recipe.id}
                   title="Ação Importante"
                   description="Clique no botão para executar uma ação importante."
-                  recipe={savedRecipe}
+                  recipe={recipe}
                   onClick={handleActionClick}
               />
               ))}
