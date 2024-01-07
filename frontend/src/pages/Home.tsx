@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import ActionCard from "../components/Card";
 import RecipeModal from "../components/RecipeModal";
+import NewRecipeModal from "../components/NewRecipeModal";
 import Recipe from "../assets/types/recipeTypes";
 import Loader from "../components/Loader";
 
@@ -12,7 +13,8 @@ function Home() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
+  const [isNewModalOpen, setNewModalOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState<Recipe>({
     name: "",
     description: "",
@@ -22,7 +24,10 @@ function Home() {
   });
   const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
   const [listRecipes, setListRecipes] = useState<Recipe[]>([]);
-// Minhas funções a serem carregas sempre
+  const [recipeModalStates, setRecipeModalStates] = useState<{
+    [key: string]: boolean;
+  }>({});
+  // Minhas funções a serem carregas sempre
   useEffect(() => {
     const fetchUserName = async () => {
       try {
@@ -38,22 +43,23 @@ function Home() {
   }, []);
 
   const handleRecipes = async () => {
-    try{
+    try {
       const token = localStorage.getItem("token");
       const decodedToken = parseJwt(token).id;
       const userId = decodedToken.id;
-      const response = await axios.get(`http://localhost:3336/recipe/${userId}`)
-      console.log(response);
+      const response = await axios.get(
+        `http://localhost:3336/recipe/${userId}`
+      );
+      console.log(response.data[0].time);
       setListRecipes(response.data);
-
-    } catch(error){
-      console.error(`Erro ao carregar as receitas`, error)
+    } catch (error) {
+      console.error(`Erro ao carregar as receitas`, error);
     }
-  }
-  
-// Get all recipes useEffect
+  };
+
+  // Get all recipes useEffect
   useEffect(() => {
-     handleRecipes();
+    handleRecipes();
   }, [savedRecipes]);
 
   const parseJwt = (token: any) => {
@@ -63,17 +69,21 @@ function Home() {
   };
 
   const handleLogOut = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
 
-    navigate('/');
-  }
-
-  const handleActionClick = () => {
-    setModalOpen(true);
+    navigate("/");
   };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleActionClick = (recipe: Recipe) => {
+    setApiResponse(recipe);
+    setRecipeModalStates((prevStates) => ({
+      ...prevStates,
+      [recipe.id]: true,
+    }));
+  };
+
+  const handleCloseNewModal = () => {
+    setNewModalOpen(false);
   };
 
   const handleSave = async () => {
@@ -87,14 +97,11 @@ function Home() {
         console.log(apiResponse);
         const updatedApiResponse = { ...apiResponse, userId };
         console.log(updatedApiResponse);
-        const response = await axios.post(
-          "http://localhost:3336/recipe/save",
-          {
-            data: updatedApiResponse,
-          }
-        );
+        const response = await axios.post("http://localhost:3336/recipe/save", {
+          data: updatedApiResponse,
+        });
         setSavedRecipes((prevRecipes) => [...prevRecipes, updatedApiResponse]);
-        handleCloseModal();
+        handleCloseNewModal();
       }
     } catch (error) {
       console.error("Erro ao salvar: ", error);
@@ -109,11 +116,10 @@ function Home() {
       });
       const responseData = JSON.parse(response.data);
       setApiResponse(responseData);
-      setModalOpen(true);
+      setNewModalOpen(true);
     } catch (error) {
       console.error("Erro ao chamar a API:", error);
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -121,8 +127,8 @@ function Home() {
   return (
     <div className="mainContainer min-h-screen bg-white">
       <Navbar userName={userName} onLogout={handleLogOut} />
-      <div className="flex flex-col p-2 text-center justify-center">
-        <div className="instructionSection p-2">
+      <div className="flex flex-col p-4 text-center justify-center">
+        <div className="instructionSection p-4">
           <form>
             <Input onInputSubmit={handleInputSubmit} />
           </form>
@@ -131,21 +137,35 @@ function Home() {
         <div className="newRecipeSection text-xl">
           <h2>Minhas receitas</h2>
           <div className="mainContainer flex align-middle justify-center max-h-screen">
-            <div className="gridContainer p-2 grid md:grid-cols-4 gap-3 sm:grid-cols-3">
-            {listRecipes.map((recipe) => (
-              <ActionCard
+            <div className="gridContainer p-4 grid md:grid-cols-4 gap-3 sm:grid-cols-3">
+              {listRecipes.map((recipe) => (
+                <ActionCard
                   key={recipe.id}
                   title="Ação Importante"
                   description="Clique no botão para executar uma ação importante."
                   recipe={recipe}
-                  onClick={handleActionClick}
-              />
+                  onClick={() => handleActionClick(recipe)}
+                />
               ))}
-              </div>
             </div>
-          <RecipeModal
-            open={isModalOpen}
-            onClose={handleCloseModal}
+          </div>
+          {listRecipes.map((recipe) => (
+            <RecipeModal
+              key={recipe.id}
+              modalOpen={recipeModalStates[recipe.id] || false}
+              onClose={() =>
+                setRecipeModalStates((prevStates) => ({
+                  ...prevStates,
+                  [recipe.id]: false,
+                }))
+              }
+              recipe={recipe}
+            />
+          ))}
+
+          <NewRecipeModal
+            open={isNewModalOpen}
+            onClose={handleCloseNewModal}
             recipe={apiResponse}
             onSave={handleSave}
           />
