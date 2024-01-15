@@ -140,7 +140,7 @@ function Home() {
     <div className="mainContainer min-h-screen bg-white">
       <Navbar userName={userName} onLogout={handleLogOut} />
       <div className="flex flex-col p-4 text-center justify-center">
-        <div className="instructionSection p-4">
+        <div className="instructionSection min-w-full p-4">
           <form>
             <Input onInputSubmit={handleInputSubmit} />
           </form>

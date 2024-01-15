@@ -13,7 +13,7 @@ function Input({ onInputSubmit }: any){
 
   return (
     <div className='flex items-center justify-center'>
-      <div className="flex w-[54%] mx-10 rounded bg-white">
+      <div className="flex mx-10 rounded bg-white md:w-[54%]">
         <input
           className="w-full border-2 rounded px-4 py-1 text-gray-400 outline-none focus:outline-none"
           type="text"
