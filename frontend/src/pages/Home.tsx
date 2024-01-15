@@ -57,6 +57,18 @@ function Home() {
     }
   };
 
+  const deleteRecipe = async (recipe: Recipe) => {
+    try {
+      const id = recipe.id;
+      await axios.delete(`http://localhost:3336/recipe/delete/${id}`);
+      setListRecipes((prevRecipes) =>
+        prevRecipes.filter((recipe) => recipe.id !== id)
+      );
+    } catch (error) {
+      console.error('Recipe not found!', error);
+    }
+  }
+
   // Get all recipes useEffect
   useEffect(() => {
     handleRecipes();
@@ -145,6 +157,7 @@ function Home() {
                   description="Clique no botão para executar uma ação importante."
                   recipe={recipe}
                   onClick={() => handleActionClick(recipe)}
+                  onDelete={deleteRecipe}
                 />
               ))}
             </div>

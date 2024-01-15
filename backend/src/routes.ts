@@ -5,6 +5,7 @@ import { DeleteUserController } from "./controllers/DeleteUserController";
 import { AuthUserController } from "./controllers/AuthController";
 import { SaveRecipeController } from "./controllers/SaveRecipeController";
 import { ListRecipesController } from "./controllers/ListRecipesController";
+import { DeleteRecipeController } from "./controllers/DeleteRecipeController";
 
 const generateResponse = require("./api/openai.js")
 
@@ -24,8 +25,13 @@ routes.get('/users', async (req: Request, res: Response) => {
     return new ListUsersController().handle(req, res);
 })
 
+// Delete routes
 routes.delete('/user', async (req: Request, res: Response) => {
     return new DeleteUserController().handle(req, res)
+})
+
+routes.delete('/recipe/delete/:id', async (req: Request, res: Response) =>{
+    return new DeleteRecipeController().handle(req,res)
 })
 
 // Login Route
