@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const CadastroForm = () => {
-  const baseUrl = 'http://64.23.149.242:3336'
+  const baseUrl = 'https://64.23.149.242:3336'
   const navigate = useNavigate()
 
   const formik = useFormik({

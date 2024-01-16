@@ -10,7 +10,7 @@ import Recipe from "../assets/types/recipeTypes";
 import Loader from "../components/Loader";
 
 function Home() {
-  const baseUrl = 'http://64.23.149.242:3336'
+  const baseUrl = 'https://64.23.149.242:3336'
 
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
