@@ -114,6 +114,7 @@ function Home() {
         const response = await axios.post(`${baseUrl}/recipe/save`, {
           data: updatedApiResponse,
         });
+        console.log(response)
         setSavedRecipes((prevRecipes) => [...prevRecipes, updatedApiResponse]);
         handleCloseNewModal();
       }
