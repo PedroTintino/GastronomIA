@@ -18,12 +18,13 @@ function Auth(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const baseUrl = 'http://64.23.149.242:3336'
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
 
   try{
-    const response = await axios.post('http://localhost:3336/login', {email, password});
+    const response = await axios.post(`${baseUrl}/login`, {email, password});
 
     const token = response.data.token;
     localStorage.setItem('token', token);

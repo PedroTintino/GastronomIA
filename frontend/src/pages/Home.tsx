@@ -10,6 +10,8 @@ import Recipe from "../assets/types/recipeTypes";
 import Loader from "../components/Loader";
 
 function Home() {
+  const baseUrl = 'http://64.23.149.242:3336'
+
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,7 @@ function Home() {
       const decodedToken = parseJwt(token).id;
       const userId = decodedToken.id;
       const response = await axios.get(
-        `http://localhost:3336/recipe/${userId}`
+        `${baseUrl}/recipe/${userId}`
       );
       console.log(response.data[0].time);
       setListRecipes(response.data);
@@ -60,7 +62,7 @@ function Home() {
   const deleteRecipe = async (recipe: Recipe) => {
     try {
       const id = recipe.id;
-      await axios.delete(`http://localhost:3336/recipe/delete/${id}`);
+      await axios.delete(`${baseUrl}/recipe/delete/${id}`);
       setListRecipes((prevRecipes) =>
         prevRecipes.filter((recipe) => recipe.id !== id)
       );
@@ -109,7 +111,7 @@ function Home() {
         console.log(apiResponse);
         const updatedApiResponse = { ...apiResponse, userId };
         console.log(updatedApiResponse);
-        const response = await axios.post("http://localhost:3336/recipe/save", {
+        const response = await axios.post(`${baseUrl}/recipe/save`, {
           data: updatedApiResponse,
         });
         setSavedRecipes((prevRecipes) => [...prevRecipes, updatedApiResponse]);
@@ -123,7 +125,7 @@ function Home() {
   const handleInputSubmit = async (inputValue: String) => {
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:3336/apiResponse", {
+      const response = await axios.post(`${baseUrl}/apiResponse`, {
         data: inputValue,
       });
       const responseData = JSON.parse(response.data);
