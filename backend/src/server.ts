@@ -12,8 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 3336;
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-    console.log('Middleware CORS está sendo chamado.');
-    cors()(req, res, next);
+    res.header('Access-Control-Allow-Origin', 'https://seu-dominio.vercel.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
 app.use(cors(corsOptions))
