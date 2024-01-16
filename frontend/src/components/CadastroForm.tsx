@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const CadastroForm = () => {
+  const baseUrl = 'http://64.23.149.242:3336'
   const navigate = useNavigate()
 
   const formik = useFormik({
@@ -25,7 +26,7 @@ const CadastroForm = () => {
     }),
     onSubmit: async (values) => {
       try{
-        const response = await axios.post('http://localhost:3336/create', values);
+        const response = await axios.post(`${baseUrl}/create`, values);
 
         if(response.status === 200){
           alert('Credencial gerada! Clique em OK para ser redirecionado à sessão de login de login.')
