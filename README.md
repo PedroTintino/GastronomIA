@@ -11,11 +11,12 @@
     <p>Once you've created your account and made login, you gonna be redirected to your home page where you'll be able to tell our AI the ingredients you got typing them       inside an input.</p> 
      <img src="https://github.com/PedroTintino/GastronomIA/blob/main/input-preview.png" alt="Input example" width="350" height="180">
     <p>After doing this, a recipe will be generated.</p>
+      <img src="https://github.com/PedroTintino/GastronomIA/blob/main/card-preview.png" alt="Input example" width="350" height="180">
   </li>
   <li>
     <h2>Saving and deleting your recipes</h2>
     <p>Now you've generated and saved your recipe a preview card will be rendered. Inside this you'll be able to read the complete description or delete. <strong>Note:           </strong> Even if you log out, your recipes will be maintained.</p>
-    <img src="https://github.com/PedroTintino/GastronomIA/blob/main/card-preview.png" alt="Input example" width="350" height="180">
+    <img src="https://github.com/PedroTintino/GastronomIA/blob/main/card-preview.png" alt="Input example" width="300" height="180">
   </li>
 </ol>
 <p>Enjoy it!</p>
