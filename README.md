@@ -19,4 +19,4 @@
     <img src="https://github.com/PedroTintino/GastronomIA/blob/main/card-preview.png" alt="Input example" width="280" height="280">
   </li>
 </ol>
-<p>Enjoy it!</p>
+<h3>Enjoy it!</h3>
