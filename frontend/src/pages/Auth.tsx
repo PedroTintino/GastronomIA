@@ -18,7 +18,7 @@ function Auth(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const baseUrl = 'http://64.23.149.242:3336'
+  const baseUrl = 'https://gastronomiaapi.cloud'
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
