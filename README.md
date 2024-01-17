@@ -5,7 +5,7 @@
     <h2>Creating an account</h2>
     <p>First things first, you'll need to create your account. All you need to do is choosing an email address and a password. We'll use this to storage your recipes as well.</p>
   </li>
-  <li><h2>Using the AI</h2></li>
+  <li><h2>Using the AI Assistant</h2></li>
   <li><h2>Saving and deleting your recipes</h2></li>
 </ol>
 <p>Enjoy it!</p>
