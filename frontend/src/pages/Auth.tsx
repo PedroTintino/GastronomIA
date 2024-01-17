@@ -1,6 +1,6 @@
 import {  FormEvent, useState } from 'react';
 // @ts-ignore
-// import Typical from 'react-typical';
+import Typical from 'react-typical';
 import logo from '../assets/logo.png'
 import { useMediaQuery } from 'react-responsive';
 import { Link} from 'react-router-dom';
@@ -42,12 +42,12 @@ function Auth(){
     <div className="bg-strongPink w-[100%] h-screen flex justify-center items-center invisible;">
       <div className='introText flex font-medium text-3xl text-white p-20'>
         <span>Conheça <span className='text-4xl font-bold'>GastronomIA</span> seu
-        {/* <Typical
+         <Typical
           className='text-4xl font-bold'
           steps={[' PARCEIRO', 3000, ' AMIGO', 3000, ' ASSISTENTE', 3000]}
           loop={1}
           wrapper={'span'}
-        /> */}
+        />
         de cozinha virtual!</span>
       </div>
     </div>
