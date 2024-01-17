@@ -4,7 +4,7 @@
   <li>
     <h2>Creating an account</h2>
     <p>First things first, you'll need to create your account. All you need to do is choosing an email address and a password. We'll use this to storage your recipes as well.      </p>
-    <img src="https://github.com/PedroTintino/GastronomIA/blob/main/gastronomia-gif.gif" alt="An usage preview" width="300" height="250">
+    <img src="https://github.com/PedroTintino/GastronomIA/blob/main/gastronomia-gif.gif" alt="An usage preview" width="350" height="220">
   </li>
   <li><h2>Using the AI Assistant</h2></li>
   <li><h2>Saving and deleting your recipes</h2></li>
