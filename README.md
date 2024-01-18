@@ -36,4 +36,8 @@
       npm install;
     </pre>
   </li>
+  <li>
+    <p>Create a .env file and create your SECRET, OPENAI_API_KEY and MongoDB connection string</p>
+    <p><strong>Note:</strong> You can get an openai key at https://openai.com/blog/openai-api. The SECRET can be created by yourself typing a sequence.</p>
+  </li>
 </ul>
