@@ -37,7 +37,20 @@
     </pre>
   </li>
   <li>
-    <p>Create a .env file and create your SECRET, OPENAI_API_KEY and MongoDB connection string</p>
+    <p>Create a .env file and create your SECRET, OPENAI_API_KEY and MongoDB connection string: </p>
     <p><strong>Note:</strong> You can get an openai key at https://openai.com/blog/openai-api. The SECRET can be created by yourself typing a sequence.</p>
+  </li>
+  <li>
+    <h2>Usage</h2>
+    <p>Once you have sucefully created/installed your dependencies, you'll be able to run it using the follow commands:</p>
+    <pre class="language-bash">
+      //For your server-side (backend)
+      $ npm start
+    </pre>
+    
+    <pre class="language-bash">
+      //For your client-side (frontend)
+      $ npm run dev
+    </pre>
   </li>
 </ul>
