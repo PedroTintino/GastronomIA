@@ -26,15 +26,8 @@
     <p>Clone and acess the front/backend folders separately:</p>
     <pre class="language-bash">
       $ git clone https://github.com/PedroTintino/GastronomIA
-    <pre>
-    <p>Test</p>
-    <pre class="language-bash">
       $ cd backend
+      $ cd frontend
     <pre>
-    <p>
-    <pre class="language-bash">
-    $ cd frontend
-    <pre>
-    </p>
   </li>
 </ul>
