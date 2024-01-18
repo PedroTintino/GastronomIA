@@ -28,6 +28,7 @@
       $ git clone https://github.com/PedroTintino/GastronomIA
       <br>
       $ cd backend
+      <br>
       $ cd frontend
     <pre>
   </li>
