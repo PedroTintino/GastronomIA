@@ -33,7 +33,7 @@
   <li>
     <p>For each folder install the dependecies (use --force if you have any trouble):</p>
     ```bash
-      npm install 
+      npm install;
     ```
   </li>
 </ul>
