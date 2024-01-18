@@ -25,9 +25,9 @@
   <li>
     <p>Clone and acess the front/backend folders separately:</p>
     ```
-    $git clone https://github.com/PedroTintino/GastronomIA
-    $cd backend
-    $cd frontend
+    $ git clone https://github.com/PedroTintino/GastronomIA
+    $ cd backend
+    $ cd frontend
     ```
   </li>
 </ul>
