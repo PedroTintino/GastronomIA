@@ -28,6 +28,6 @@
     $ git clone https://github.com/PedroTintino/GastronomIA
     $ cd backend
     $ cd frontend
-    <pre class="language-bash">
+    <pre>
   </li>
 </ul>
