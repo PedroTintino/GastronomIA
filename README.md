@@ -31,8 +31,10 @@
     <pre class="language-bash">
       $ cd backend
     <pre>
+    <p>
     <pre class="language-bash">
     $ cd frontend
     <pre>
+    </p>
   </li>
 </ul>
