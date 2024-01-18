@@ -35,7 +35,7 @@
   <li>
     <p>For each folder install the dependecies (use --force if you have any trouble):</p>
     <pre class="language-bash">
-      npm install;
+      npm install
     </pre>
   </li>
   <li>
