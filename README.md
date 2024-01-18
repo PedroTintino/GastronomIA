@@ -27,6 +27,7 @@
     <pre class="language-bash">
       $ git clone https://github.com/PedroTintino/GastronomIA
     <pre>
+    <p>Test</p>
     <pre class="language-bash">
       $ cd backend
     <pre>
