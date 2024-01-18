@@ -20,3 +20,10 @@
   </li>
 </ol>
 <h3>Enjoy it!</h3>
+<h1>GastronomIA: Installation Guide (for studies)</h1>
+<ul>
+  <li>
+    <p>Clone and acess the front/backend folders separately:</p>
+    `git clone https://github.com/PedroTintino/GastronomIA`
+  </li>
+</ul>
