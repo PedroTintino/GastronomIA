@@ -23,11 +23,11 @@
 <h1>GastronomIA: Installation Guide (for studies)</h1>
 <ul>
   <li>
-    <p>Clone and acess the front/backend folders separately:</p>
-    ```
+    <pre>Clone and acess the front/backend folders separately:</p>
+    <pre class="language-bash">
     $ git clone https://github.com/PedroTintino/GastronomIA
     $ cd backend
     $ cd frontend
-    ```
+    <pre class="language-bash">
   </li>
 </ul>
