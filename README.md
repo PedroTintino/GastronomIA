@@ -32,8 +32,8 @@
   </li>
   <li>
     <p>For each folder install the dependecies (use --force if you have any trouble):</p>
-    ```bash
+    <pre class="language-js">
       npm install;
-    ```
+    </pre>
   </li>
 </ul>
