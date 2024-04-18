@@ -3,7 +3,7 @@ import prismaClient from "../index";
 class DeleteRecipeService{
     async execute(id: string){
         if(!id){
-            throw new Error('Missim recipe id param!')
+            throw new Error('Missing recipe id param!')
         }
         const findRecipe = await prismaClient.recipe.findFirst({
             where:{
